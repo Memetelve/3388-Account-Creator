@@ -5,6 +5,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 import os, time, win32clipboard, sys
+import random, string
+
+#generating password
+letters_and_digits = string.ascii_letters + string.digits
+password = ''.join((random.choice(letters_and_digits) for i in range(13)))
 
 #variables
 i = 0
@@ -33,10 +38,10 @@ form2 = driver.find_element_by_id("email")
 form2.send_keys(clip_board)
 
 form3 = driver.find_element_by_id("password")
-form3.send_keys("Patryk to gej")
+form3.send_keys(password)
 
 form4 = driver.find_element_by_id("confirm_password")
-form4.send_keys("Patryk to gej")
+form4.send_keys(password)
 
 button = driver.find_element_by_class_name("wibtn-primary").click()
 time.sleep(5)
@@ -55,9 +60,9 @@ while i == 0:
 driver.find_element_by_xpath("/html/body/div[1]/div[4]/div/div/div[4]/div/p[4]/a").click()
 time.sleep(5)
 
-#creating varaibles from strings
+#creating longer string from strings and varaibles
 email = "email: " + clip_board + "\n"
-password = "passowrd: Patryk to gej \n"
+password = "passoword: " + password + "\n"
 
 #opening file, writing email and password 
 f = open("database.txt", "a")
